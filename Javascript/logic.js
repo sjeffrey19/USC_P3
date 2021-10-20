@@ -14,7 +14,6 @@ d3.csv("/Resources/la_apts_clean.csv").then(function(data) {
   console.log(data);
 
   // Create new marker cluster group
-  // var markers = L.markerClusterGroup();
   var markers = L.markerClusterGroup();
 
   // Loop through the data
@@ -23,12 +22,11 @@ d3.csv("/Resources/la_apts_clean.csv").then(function(data) {
       // Check for the location
       if (data[i].Latitude) {
           markers.addLayer(L.marker([data[i].Latitude, data[i].Longitude])
-          .bindPopup(data[i]["Neighborhood" + " | " + "number bedrooms"]));
+          .bindPopup(data[i]["Neighborhood"] + "<br> Bedrooms: " + data[i]["number bedrooms"] + "<br> SQFT: " + data[i]["sqft"] + "<br> Price: " + data[i]["price"]));
       }
   }
 
 // Add our marker cluster layer to the map.
-// myMap.addLayer(L.layerGroup(markers));
 myMap.addLayer(markers);
 
 });
